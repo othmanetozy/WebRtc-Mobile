@@ -39,8 +39,8 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage("drawble/profil.png"),
-                    radius: 30,
+                    backgroundImage: AssetImage("images/img.png"),
+                    radius: 44,
                   )
                 ],
               ),
