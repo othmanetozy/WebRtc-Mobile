@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(testApp());
@@ -10,7 +13,10 @@ class testApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(), //ather page affichage home page default
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple
+      ),
+      home: const HomePage(), //ather page affichage home page default
     );
   }
 }
@@ -22,9 +28,31 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar
-        (title: Text("hello")
+        (title: const Text("BL Remote Assist")
     ),
-    body: Text("hello word"),
+
+      body: Center(
+      child: Text("Hello" , style:TextStyle(color: Colors.red,fontSize: 30) ,),
+    ),
+
+    drawer: Drawer(
+      child: Column(
+        children: [
+          DrawerHeader(
+            child: Row(),
+              decoration:BoxDecoration(
+                  gradient: LinearGradient(colors: [Colors.deepPurpleAccent,Colors.red])
+              ) ,
+            ),
+        ],
+      ),
+    ),
+
+
+
+
+
     );
+
   }
 }
