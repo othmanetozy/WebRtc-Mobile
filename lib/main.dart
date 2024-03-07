@@ -13,9 +13,7 @@ class testApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple
-      ),
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: const HomePage(), //ather page affichage home page default
     );
   }
@@ -27,32 +25,32 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar
-        (title: const Text("BL Remote Assist")
-    ),
-
+      appBar: AppBar(title: const Text("BL Remote Assist")),
       body: Center(
-      child: Text("Hello" , style:TextStyle(color: Colors.red,fontSize: 30) ,),
-    ),
-
-    drawer: Drawer(
-      child: Column(
-        children: [
-          DrawerHeader(
-            child: Row(),
-              decoration:BoxDecoration(
-                  gradient: LinearGradient(colors: [Theme.of(context).primaryColor,Colors.red])
-              ) ,
-            ),
-        ],
+        child: Text(
+          "Bienvenue",
+          style: TextStyle(color: Colors.red, fontSize: 30),
+        ),
       ),
-    ),
-
-
-
-
-
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage("drawble/profil.png"),
+                    radius: 30,
+                  )
+                ],
+              ),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Theme.of(context).primaryColor, Colors.red])),
+            ),
+          ],
+        ),
+      ),
     );
-
   }
 }
