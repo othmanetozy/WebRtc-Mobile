@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
           DrawerHeader(
             child: Row(),
               decoration:BoxDecoration(
-                  gradient: LinearGradient(colors: [Colors.deepPurpleAccent,Colors.red])
+                  gradient: LinearGradient(colors: [Theme.of(context).primaryColor,Colors.red])
               ) ,
             ),
         ],
