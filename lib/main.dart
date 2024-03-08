@@ -13,7 +13,14 @@ class testApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: ThemeData(primarySwatch: Colors.deepPurple,
+        textTheme:TextTheme(
+          bodyMedium: TextStyle(fontSize: 30,color: Colors.deepPurple),
+          bodyLarge: TextStyle(fontSize: 50, color: Colors.red),
+          bodySmall: TextStyle(fontSize: 25, color: Colors.blue,fontFamily:"Rubik-Italic"),
+        ),
+        iconTheme: IconThemeData(color: Colors.blueAccent,size: 50)
+      ),
       home: const HomePage(), //ather page affichage home page default
     );
   }
@@ -32,11 +39,12 @@ class HomePage extends StatelessWidget {
           style: TextStyle(color: Colors.red, fontSize: 30),
         ),
       ),
-      drawer: Drawer(
+
+      drawer:   Drawer(
         child: Column(
-          children: [
+          children:[
             DrawerHeader(
-              child: Row(
+              child:Row(
                 children: [
                   CircleAvatar(
                     backgroundImage: AssetImage("images/img.png"),
@@ -48,6 +56,18 @@ class HomePage extends StatelessWidget {
                   gradient: LinearGradient(
                       colors: [Theme.of(context).primaryColor, Colors.red])),
             ),
+
+            ListTile(// list item
+              leading: Icon(Icons.home),
+              trailing: Icon(Icons.arrow_back_ios_new),
+              onTap: (){},   // click
+              title: Text(
+                "Home",
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontFamily: "Rubik-Italic",
+                ),
+              ),
+            )
           ],
         ),
       ),
