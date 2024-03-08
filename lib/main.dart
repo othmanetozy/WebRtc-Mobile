@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:testflutter/pages/consulting.page.dart';
+import 'package:testflutter/pages/home.page.dart';
+import 'package:testflutter/pages/products.page.dart';
+import 'package:testflutter/pages/review.page.dart';
 
 void main() {
   runApp(testApp());
@@ -13,6 +17,12 @@ class testApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        "/":(context)=>HomePage(),
+        "/review":(context)=>ReviewPage(),
+        "/consulting":(context)=>ConsultingPage(),
+        "/products":(context)=>ProductsPage(),
+      },
       theme: ThemeData(primarySwatch: Colors.deepPurple,
         textTheme:const TextTheme(
           bodyMedium: TextStyle(fontSize: 30,color: Colors.deepPurple),
@@ -21,89 +31,8 @@ class testApp extends StatelessWidget {
         ),
         iconTheme: IconThemeData(color: Colors.blueAccent,size: 30)
       ),
-      home: const HomePage(), //home page default
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("BL Remote Assist")),
-      body: Center(
-        child: Text(
-          "Bienvenue",
-          style: TextStyle(color: Colors.red, fontSize: 30),
-        ),
-      ),
-
-      drawer:   Drawer(
-        child: Column(
-          children:[
-            DrawerHeader(
-              child:Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage("images/img.png"),
-                    radius: 44,
-                  )
-                ],
-              ),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Theme.of(context).primaryColor, Colors.red])),
-            ),
-
-            ListTile(// list item
-              leading: Icon(
-                  Icons.home, color: Theme.of(context).primaryColor,),
-              trailing: Icon(Icons.arrow_forward_ios_sharp),
-              onTap: (){},   // click
-              title: Text(
-                "Home",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontFamily: "Rubik-Italic",),
-              ),
-            ),
-            ListTile(// list item
-              leading: Icon(
-                Icons.stars, color: Theme.of(context).primaryColor,),
-              trailing: Icon(Icons.arrow_forward_ios_sharp),
-              onTap: (){},   // click
-              title: Text(
-                "Review",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontFamily: "Rubik-Italic",),
-              ),
-            ),
-            ListTile(// list item
-              leading: Icon(
-                Icons.supervised_user_circle, color: Theme.of(context).primaryColor,),
-              trailing: Icon(Icons.arrow_forward_ios_sharp),
-              onTap: (){},   // click
-              title: Text(
-                "Consulting",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontFamily: "Rubik-Italic",),
-              ),
-            ),
-            ListTile(// list item
-              leading: Icon(
-                Icons.production_quantity_limits, color: Theme.of(context).primaryColor,),
-              trailing: Icon(Icons.arrow_forward_ios_sharp),
-              onTap: (){},   // click
-              title: Text(
-                "Products",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontFamily: "Rubik-Italic",),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
