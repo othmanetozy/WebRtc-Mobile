@@ -14,14 +14,14 @@ class testApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.deepPurple,
-        textTheme:TextTheme(
+        textTheme:const TextTheme(
           bodyMedium: TextStyle(fontSize: 30,color: Colors.deepPurple),
           bodyLarge: TextStyle(fontSize: 50, color: Colors.red),
-          bodySmall: TextStyle(fontSize: 25, color: Colors.blue,fontFamily:"Rubik-Italic"),
+          bodySmall: TextStyle(fontSize: 25, color: Colors.blue ),
         ),
-        iconTheme: IconThemeData(color: Colors.blueAccent,size: 50)
+        iconTheme: IconThemeData(color: Colors.blueAccent,size: 30)
       ),
-      home: const HomePage(), //ather page affichage home page default
+      home: const HomePage(), //home page default
     );
   }
 }
@@ -58,16 +58,49 @@ class HomePage extends StatelessWidget {
             ),
 
             ListTile(// list item
-              leading: Icon(Icons.home),
-              trailing: Icon(Icons.arrow_back_ios_new),
+              leading: Icon(
+                  Icons.home, color: Theme.of(context).primaryColor,),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
               onTap: (){},   // click
               title: Text(
                 "Home",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontFamily: "Rubik-Italic",
-                ),
+                  fontFamily: "Rubik-Italic",),
               ),
-            )
+            ),
+            ListTile(// list item
+              leading: Icon(
+                Icons.stars, color: Theme.of(context).primaryColor,),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){},   // click
+              title: Text(
+                "Review",
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontFamily: "Rubik-Italic",),
+              ),
+            ),
+            ListTile(// list item
+              leading: Icon(
+                Icons.supervised_user_circle, color: Theme.of(context).primaryColor,),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){},   // click
+              title: Text(
+                "Consulting",
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontFamily: "Rubik-Italic",),
+              ),
+            ),
+            ListTile(// list item
+              leading: Icon(
+                Icons.production_quantity_limits, color: Theme.of(context).primaryColor,),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){},   // click
+              title: Text(
+                "Products",
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontFamily: "Rubik-Italic",),
+              ),
+            ),
           ],
         ),
       ),
