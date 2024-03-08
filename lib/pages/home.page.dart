@@ -26,7 +26,10 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+              padding: EdgeInsets.symmetric(
+                  horizontal:horizantalPading,
+                  vertical: verticalPading,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -48,9 +51,10 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Hello Everyone"),
-                  Text("Berger-Levrault")
+                  Text("Bienvenue", style: TextStyle(color: Colors.black)),
+                  Text("Berger-Levrault",style: TextStyle(fontSize: 40,color: Colors.red),)
                 ],
               ),
             )
