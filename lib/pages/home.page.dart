@@ -6,9 +6,14 @@ class HomePage extends StatelessWidget {
   final double horizantalPading = 40;
   final double verticalPading = 25;
 
+  // list
 
-
-  const HomePage({super.key});
+  List myDevices = [
+    ["usine 1 ","lib/icons/img1.jpg",true],
+    ["usine 2 ","lib/icons/img2.jpg",false],
+    ["usine 3 ","lib/icons/img3.jpg",false],
+    ["usine 4 ","lib/icons/img4.jpg",false],
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +61,25 @@ class HomePage extends StatelessWidget {
                   Text("Bienvenue", style: TextStyle(color: Colors.black)),
                   Text("Berger-Levrault",style: TextStyle(fontSize: 40,color: Colors.red),)
                 ],
+              ),
+            ),
+            Padding(
+              padding:EdgeInsets.symmetric(horizontal:horizantalPading),
+              child: Text("Industry GMAO")
+            ),
+            Expanded(
+              child: GridView.builder(
+                itemCount: myDevices.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2
+                ),
+                itemBuilder: (context, index) {
+                  // Here you should return the widget for each item in the grid
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(color: Colors.grey[700],),
+                  );
+                },
               ),
             )
           ],
