@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:testflutter/icons/util/Mydevice.page.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -18,14 +18,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(title: const Text("BL Remote Assist")),
-      /*body: Center(
-        child: Text(
-          "Bienvenue",
-          style: TextStyle(color: Colors.red, fontSize: 30),
-        ),
-      ),*/
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,9 +69,10 @@ class HomePage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   // Here you should return the widget for each item in the grid
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(color: Colors.grey[700],),
+                  return Mydevice(
+                      DeviceUsine: myDevices[index][0],
+                      iconDevice: myDevices[index][1],
+                      powerOn: myDevices[index][2]
                   );
                 },
               ),
@@ -110,7 +105,7 @@ class HomePage extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios_sharp),
               onTap: (){
                 Navigator.pushNamed(context, "/");
-              },   // click
+              },
               title: Text(
                 "Home",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -136,20 +131,19 @@ class HomePage extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios_sharp),
               onTap: (){
                 Navigator.pushNamed(context, "/consulting");
-              },   // click
+              },
               title: Text(
                 "Consulting",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   fontFamily: "Rubik-Italic",),
               ),
             ),
-            ListTile(// list item
-              leading: Icon(
-                Icons.production_quantity_limits, color: Theme.of(context).primaryColor,),
+            ListTile(
+              leading: Icon(Icons.production_quantity_limits, color: Theme.of(context).primaryColor,),
               trailing: Icon(Icons.arrow_forward_ios_sharp),
               onTap: (){
                 Navigator.pushNamed(context, "/products");
-              },   // click
+              },
               title: Text(
                 "Products",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(

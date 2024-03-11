@@ -62,6 +62,10 @@ flutter:
   assets:
     - images/img.png
     - lib/icons/menu.png
+    - lib/icons/usine.png
+    - lib/icons/reglages.png
+    - lib/icons/industry.png
+    - lib/icons/industrie.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
