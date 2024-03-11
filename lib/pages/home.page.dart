@@ -64,6 +64,7 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: GridView.builder(
                 itemCount: myDevices.length,
+                padding: EdgeInsets.all(25),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2
                 ),
