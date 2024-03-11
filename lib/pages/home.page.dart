@@ -9,10 +9,10 @@ class HomePage extends StatelessWidget {
   // list
 
   List myDevices = [
-    ["usine 1 ","lib/icons/usine.png",true],
-    ["usine 2 ","lib/icons/reglages.png",false],
-    ["usine 3 ","lib/icons/industry.png",false],
-    ["usine 4 ","lib/icons/industrie.png",false],
+    ["usine","lib/icons/usine.png",true],
+    ["Réglages  ","lib/icons/reglages.png",false],
+    ["industry","lib/icons/industry.png",false],
+    ["industrie","lib/icons/industrie.png",false],
   ];
 
   @override

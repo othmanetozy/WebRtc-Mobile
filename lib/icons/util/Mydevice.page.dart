@@ -28,6 +28,9 @@ class Mydevice extends StatelessWidget {
             Image.asset(
                 iconDevice,height: 60,
             ),
+            
+            //name the device 
+            Text(DeviceUsine)
           ],
         ),
       ),
