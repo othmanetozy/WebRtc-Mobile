@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:testflutter/pages/consulting.page.dart';
+import 'package:testflutter/pages/home.page.dart';
+import 'package:testflutter/pages/products.page.dart';
+import 'package:testflutter/pages/review.page.dart';
 
 void main() {
   runApp(testApp());
@@ -13,44 +17,22 @@ class testApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: const HomePage(), //ather page affichage home page default
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("BL Remote Assist")),
-      body: Center(
-        child: Text(
-          "Bienvenue",
-          style: TextStyle(color: Colors.red, fontSize: 30),
+      routes: {
+        "/":(context)=>HomePage(),
+        "/review":(context)=>ReviewPage(),
+        "/consulting":(context)=>ConsultingPage(),
+        "/products":(context)=>ProductsPage(),
+      },
+      theme: ThemeData(primarySwatch: Colors.deepPurple,
+        textTheme:const TextTheme(
+          bodyMedium: TextStyle(fontSize: 30,color: Colors.deepPurple),
+          bodyLarge: TextStyle(fontSize: 50, color: Colors.red),
+          bodySmall: TextStyle(fontSize: 25, color: Colors.blue ),
         ),
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            DrawerHeader(
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage("drawble/profil.png"),
-                    radius: 30,
-                  )
-                ],
-              ),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Theme.of(context).primaryColor, Colors.red])),
-            ),
-          ],
-        ),
+        iconTheme: IconThemeData(color: Colors.blueAccent,size: 30)
       ),
     );
   }
 }
+
+
