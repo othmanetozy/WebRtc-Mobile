@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testflutter/components/button.dart';
 import 'package:testflutter/components/text_field.dart';
 
 
@@ -43,13 +44,27 @@ class _LoginPageState extends State<LoginPage> {
              //Password
 
                 MyTextField(controller: passwordController, hintText: 'Password', obscureText: true),
+              const SizedBox(height: 10,),
 
 
+            //buttom
+            MyButton(onTap: () {}, text: 'Sign In'
 
+            ),
+                const SizedBox(height: 25,),
 
+                //Register Me
 
-
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Not a member ? " ,style:TextStyle(color: Colors.indigo) ,),
+                const SizedBox(height: 10),
+                Text("Register Now",style: TextStyle(
+                  fontWeight: FontWeight.bold,color: Colors.red,
+                ),),
+              ],
+            ),
 
 
 
