@@ -6,6 +6,7 @@ import 'package:testflutter/pages/consulting.page.dart';
 import 'package:testflutter/pages/home.page.dart';
 import 'package:testflutter/pages/products.page.dart';
 import 'package:testflutter/pages/review.page.dart';
+import 'package:testflutter/pages/videocall.page.dart';
 
 void main() {
   runApp(testApp());
@@ -18,21 +19,20 @@ class testApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        "/":(context)=>HomePage(),
-        "/review":(context)=>ReviewPage(),
-        "/consulting":(context)=>ConsultingPage(),
-        "/products":(context)=>ProductsPage(),
+        "/": (context) => HomePage(),
+        "/review": (context) => ReviewPage(),
+        "/consulting": (context) => ConsultingPage(),
+        "/products": (context) => ProductsPage(),
+        "/videocall": (context) => VideocallPage(),
       },
-      theme: ThemeData(primarySwatch: Colors.deepPurple,
-        textTheme:const TextTheme(
-          bodyMedium: TextStyle(fontSize: 30,color: Colors.deepPurple),
-          bodyLarge: TextStyle(fontSize: 50, color: Colors.red),
-          bodySmall: TextStyle(fontSize: 25, color: Colors.blue ),
-        ),
-        iconTheme: IconThemeData(color: Colors.blueAccent,size: 30)
-      ),
+      theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+          textTheme: const TextTheme(
+            bodyMedium: TextStyle(fontSize: 30, color: Colors.deepPurple),
+            bodyLarge: TextStyle(fontSize: 50, color: Colors.red),
+            bodySmall: TextStyle(fontSize: 25, color: Colors.blue),
+          ),
+          iconTheme: IconThemeData(color: Colors.blueAccent, size: 30)),
     );
   }
 }
-
-
