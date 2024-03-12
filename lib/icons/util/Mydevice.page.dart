@@ -29,11 +29,11 @@ class Mydevice extends StatelessWidget {
             Image.asset(
                 iconDevice,height: 60,
             ),
-            
-            //name the device 
+
+            //name the device
             Text(DeviceUsine),
             CupertinoSwitch
-              (value: false,
+              (value: powerOn,
                 onChanged: (value) {}
             )
           ],
