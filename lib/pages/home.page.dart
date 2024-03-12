@@ -16,7 +16,8 @@ class HomePage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(title: const Text("BL Remote Assist")),
@@ -66,7 +67,8 @@ class HomePage extends StatelessWidget {
                 itemCount: myDevices.length,
                 padding: EdgeInsets.all(25),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2
+                    crossAxisCount: 2 ,
+                  childAspectRatio: 1/1.1
                 ),
                 itemBuilder: (context, index) {
                   // Here you should return the widget for each item in the grid

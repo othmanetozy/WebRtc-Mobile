@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 
 
@@ -23,7 +24,9 @@ class Mydevice extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.grey[100],
           borderRadius : BorderRadius.circular(10),
         ),
+        //padding: EdgeInsets.symmetric(vertical: 1),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             //Icons
             Image.asset(
@@ -31,10 +34,16 @@ class Mydevice extends StatelessWidget {
             ),
             
             //name the device 
-            Text(DeviceUsine),
-            CupertinoSwitch
-              (value: false,
-                onChanged: (value) {}
+
+
+            Row(
+              children: [
+                  Expanded(child: Text(DeviceUsine)),
+                  CupertinoSwitch
+                  (value: false,
+                    onChanged: (value) {}
+                ),
+              ],
             )
           ],
         ),
