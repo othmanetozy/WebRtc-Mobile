@@ -81,6 +81,11 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+
+
+
+
+
       drawer: Drawer(
         child: Column(
           children: [
@@ -97,6 +102,10 @@ class HomePage extends StatelessWidget {
                   gradient: LinearGradient(
                       colors: [Theme.of(context).primaryColor, Colors.red])),
             ),
+
+
+
+
             ListTile(
               // list item
               leading: Icon(
@@ -125,9 +134,7 @@ class HomePage extends StatelessWidget {
               }, // click
               title: Text(
                 "Video Call",
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontFamily: "Rubik-Italic",
-                    ),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(),
               ),
             ),
             ListTile(
@@ -178,6 +185,21 @@ class HomePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       fontFamily: "Rubik-Italic",
                     ),
+              ),
+            ),
+            ListTile(
+              // list item
+              leading: Icon(
+                Icons.lock,
+                color: Theme.of(context).primaryColor,
+              ),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: () {
+                Navigator.pushNamed(context, "/login");
+              },
+              title: Text(
+                "Login",
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(),
               ),
             ),
           ],

@@ -20,7 +20,10 @@ class Mydevice extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(11.0),
       child: Container(
-        decoration: BoxDecoration(color: Colors.grey[100],
+
+        decoration: BoxDecoration(
+          // color: powerOn ? Colors.black : Colors.grey[100],      activate dark mode
+          color: Colors.grey[100],
           borderRadius : BorderRadius.circular(10),
         ),
         child: Column(

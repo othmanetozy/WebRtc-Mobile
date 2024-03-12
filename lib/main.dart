@@ -7,6 +7,8 @@ import 'package:testflutter/pages/home.page.dart';
 import 'package:testflutter/pages/products.page.dart';
 import 'package:testflutter/pages/review.page.dart';
 import 'package:testflutter/pages/videocall.page.dart';
+import 'package:testflutter/pages/Login.page.dart';
+
 
 void main() {
   runApp(testApp());
@@ -24,7 +26,9 @@ class testApp extends StatelessWidget {
         "/consulting": (context) => ConsultingPage(),
         "/products": (context) => ProductsPage(),
         "/videocall": (context) => VideocallPage(),
+        "/login": (context) => LoginPage(),
       },
+
       theme: ThemeData(
           primarySwatch: Colors.deepPurple,
           textTheme: const TextTheme(
