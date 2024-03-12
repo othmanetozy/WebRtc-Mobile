@@ -20,29 +20,45 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
+        child : Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Center(
             child: Column(
               children: [
                 //logo
-                const SizedBox(height: 50,),
+                const SizedBox(height: 80,),
                Icon(Icons.lock,
                size: 120,
                  color: Colors.black,
                ),
                 const SizedBox(height: 40,),
-                Text("Welcome back",style:TextStyle(fontSize: 20,)),
+                Text("Welcome back, you've been missed!",style:TextStyle(fontSize: 20,)),
                 const SizedBox(height: 25,),
 
+             //Email
+              MyTextField(controller: emailTextController, hintText: 'Email', obscureText: false),
+              const SizedBox(height: 10,),
+
+             //Password
+
+                MyTextField(controller: passwordController, hintText: 'Password', obscureText: true),
 
 
-                //email
-                MyTextField(controller: emailTextController, hintText: 'email', obscureText: false),
+
+
+
+
+
+
+
+
+
               ],
             ),
           ),
         ),
+      ),
       ),
     );
   }

@@ -33,8 +33,8 @@ class testApp extends StatelessWidget {
           primarySwatch: Colors.deepPurple,
           textTheme: const TextTheme(
             //bodyMedium: TextStyle(fontSize: 30, color: Colors.deepPurple),
-            bodyLarge: TextStyle(fontSize: 50, color: Colors.red),
-            bodySmall: TextStyle(fontSize: 25, color: Colors.blue),
+            //bodyLarge: TextStyle(fontSize: 50, color: Colors.black),
+            //bodySmall: TextStyle(fontSize: 25, color: Colors.blue),
           ),
           iconTheme: IconThemeData(color: Colors.blueAccent, size: 30)),
     );
