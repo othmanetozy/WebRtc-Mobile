@@ -27,7 +27,9 @@ class testApp extends StatelessWidget {
         "/consulting": (context) => ConsultingPage(),
         "/products": (context) => ProductsPage(),
         "/videocall": (context) => VideocallPage(),
-        "/login": (context) => LoginPage(),
+        "/login": (context) => LoginPage(
+          onTap: (){},
+        ),
         "/register": (context) => register(
           onTap: (){
             Navigator.pushNamed(context, 'login');

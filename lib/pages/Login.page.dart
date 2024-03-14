@@ -4,7 +4,9 @@ import 'package:testflutter/components/text_field.dart';
 
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final void Function() onTap;
+
+  const LoginPage({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();

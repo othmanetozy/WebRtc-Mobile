@@ -31,9 +31,9 @@ class _registerState extends State<register> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //logo
-                  const SizedBox(height: 80,),
+                  const SizedBox(height: 10,),
                   Icon(Icons.lock,
-                    size: 120,
+                    size: 100,
                     color: Colors.black,
                   ),
                   const SizedBox(height: 40,),
