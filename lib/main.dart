@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -11,7 +12,9 @@ import 'package:testflutter/pages/videocall.page.dart';
 import 'package:testflutter/pages/Login.page.dart';
 
 
-void main() {
+void main() async{
+  //WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
   runApp(testApp());
 }
 
@@ -31,10 +34,12 @@ class testApp extends StatelessWidget {
           onTap: (){},
         ),
         "/register": (context) => register(
-          onTap: (){
-            Navigator.pushNamed(context, 'login');
+          onTap: () {
+            Navigator.pushNamed(context, '/login'); // Utilisez cette ligne pour naviguer vers la page de connexion
           },
         ),
+
+
       },
       //home: register(),
       theme: ThemeData(

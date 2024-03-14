@@ -66,14 +66,17 @@ class _registerState extends State<register> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Already have account " ,style:TextStyle(color: Colors.indigo) ,),
+                      Text("Already have an account ", style: TextStyle(color: Colors.indigo)),
                       const SizedBox(height: 10),
-
                       GestureDetector(
-                        onTap: widget.onTap,
-                        child:  Text("Login Here",style: TextStyle(
-                          fontWeight: FontWeight.bold,color: Colors.red,
-                        ),),
+                        onTap: widget.onTap, // Utilisez widget.onTap pour appeler la fonction passée en paramètre
+                        child: Text(
+                          "Login Here",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                          ),
+                        ),
                       )
                     ],
                   ),

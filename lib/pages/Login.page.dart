@@ -18,18 +18,17 @@ class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordController = TextEditingController();
 
-
   //sign in user
-
   void signIn() async{
     try{
-      print("wsel hnaaaaaa");
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailTextController.text, password: passwordController.text);
+          email: emailTextController.text,
+          password: passwordController.text);
     }on FirebaseException catch(e) {
       print("FirebaseAuthException: ${e.code}");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +64,13 @@ class _LoginPageState extends State<LoginPage> {
 
             //buttom
             MyButton(
-                text: 'Sign In',
-                onTap: signIn,
-            ),
+                text: 'Signin',
+                onTap: signIn,),
                 const SizedBox(height: 25,),
-
                 //Register Me
+
+
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -90,10 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
-
-
-
-
               ],
             ),
           ),
