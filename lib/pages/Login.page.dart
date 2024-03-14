@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //logo
                 const SizedBox(height: 80,),
@@ -60,9 +61,12 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Text("Not a member ? " ,style:TextStyle(color: Colors.indigo) ,),
                 const SizedBox(height: 10),
-                Text("Register Now",style: TextStyle(
-                  fontWeight: FontWeight.bold,color: Colors.red,
-                ),),
+                GestureDetector(
+                  onTap: () {},
+                  child:  Text("Register Now",style: TextStyle(
+                    fontWeight: FontWeight.bold,color: Colors.red,
+                  ),),
+                )
               ],
             ),
 
