@@ -28,7 +28,11 @@ class testApp extends StatelessWidget {
         "/products": (context) => ProductsPage(),
         "/videocall": (context) => VideocallPage(),
         "/login": (context) => LoginPage(),
-        "/register": (context) => register(),
+        "/register": (context) => register(
+          onTap: (){
+            Navigator.pushNamed(context, 'login');
+          },
+        ),
       },
       //home: register(),
       theme: ThemeData(

@@ -55,20 +55,25 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 25,),
 
                 //Register Me
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Not a member ? " ,style:TextStyle(color: Colors.indigo) ,),
-                const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () {},
-                  child:  Text("Register Now",style: TextStyle(
-                    fontWeight: FontWeight.bold,color: Colors.red,
-                  ),),
-                )
-              ],
-            ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Not a member ? ", style: TextStyle(color: Colors.indigo)),
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: Text(
+                        "Register Now",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
 
 
 

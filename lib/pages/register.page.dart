@@ -4,7 +4,9 @@ import 'package:testflutter/components/text_field.dart';
 import 'package:testflutter/pages/home.page.dart';
 
 class register extends StatefulWidget {
-  const register({super.key});
+
+  final Function()? onTap;
+  const register({super.key, required this.onTap});
 
   @override
   State<register> createState() => _registerState();
@@ -14,7 +16,7 @@ class _registerState extends State<register> {
 
   final emailTextController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +49,15 @@ class _registerState extends State<register> {
                   MyTextField(controller: passwordController, hintText: 'Password', obscureText: true),
                   const SizedBox(height: 10,),
 
+                  //Confirm Password
+
+                  MyTextField(controller: confirmPasswordController, hintText: 'Confirm Password', obscureText: true),
+                  const SizedBox(height: 10,),
+
 
                   //buttom
                   MyButton(onTap: () {
-                  }, text: 'Sign In'
+                  }, text: 'Sign Up'
                   ),
                   const SizedBox(height: 25,),
 
@@ -59,19 +66,14 @@ class _registerState extends State<register> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Not a member ? " ,style:TextStyle(color: Colors.indigo) ,),
+                      Text("Already have account " ,style:TextStyle(color: Colors.indigo) ,),
                       const SizedBox(height: 10),
-                      GestureDetector(
 
-                        child:  Text("Register Now",style: TextStyle(
+                      GestureDetector(
+                        onTap: widget.onTap,
+                        child:  Text("Login Here",style: TextStyle(
                           fontWeight: FontWeight.bold,color: Colors.red,
                         ),),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => register()),
-                          );
-                        },
                       )
                     ],
                   ),
