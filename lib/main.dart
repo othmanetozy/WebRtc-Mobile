@@ -1,8 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
+import 'package:testflutter/firebase_options.dart';
 import 'package:testflutter/pages/consulting.page.dart';
 import 'package:testflutter/pages/home.page.dart';
 import 'package:testflutter/pages/products.page.dart';
@@ -13,8 +12,10 @@ import 'package:testflutter/pages/Login.page.dart';
 
 
 void main() async{
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(testApp());
 }
 
@@ -35,7 +36,7 @@ class testApp extends StatelessWidget {
         ),
         "/register": (context) => register(
           onTap: () {
-            Navigator.pushNamed(context, '/login'); // Utilisez cette ligne pour naviguer vers la page de connexion
+            Navigator.pushNamed(context, '/login');
           },
         ),
 

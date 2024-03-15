@@ -25,10 +25,17 @@ class _LoginPageState extends State<LoginPage> {
           email: emailTextController.text,
           password: passwordController.text);
     }on FirebaseException catch(e) {
-      print("FirebaseAuthException: ${e.code}");
+      displayMessage(e.code);
     }
   }
 
+
+  void displayMessage(String messsage){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+      title: Text(messsage),
+    ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD2U1hQUJX_BcpwKer6NaTkR43tf6lYTGg',
-    appId: '1:963567142265:web:8c0f702040eabd0d071ba8',
-    messagingSenderId: '963567142265',
-    projectId: 'remotea-33fc5',
-    authDomain: 'remotea-33fc5.firebaseapp.com',
-    storageBucket: 'remotea-33fc5.appspot.com',
-    measurementId: 'G-W0LHRSMLNV',
+    apiKey: 'AIzaSyCJmsNkmo32HsJzae9mTLFy1p12kPP349o',
+    appId: '1:513581437524:web:bac86e24d1132e383053c1',
+    messagingSenderId: '513581437524',
+    projectId: 'remoteassistant-450a0',
+    authDomain: 'remoteassistant-450a0-94c0f.firebaseapp.com',
+    storageBucket: 'remoteassistant-450a0.appspot.com',
+    measurementId: 'G-L5J1ED3BD0',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHEYoQShmt4fTC_j0OX1IH2XOeqQv1Oxk',
-    appId: '1:963567142265:android:f6a7e6503a6876ae071ba8',
-    messagingSenderId: '963567142265',
-    projectId: 'remotea-33fc5',
-    storageBucket: 'remotea-33fc5.appspot.com',
+    apiKey: 'AIzaSyBb2GZnSHbR1Jt3PUT3Flze3ceKjjTV8Kw',
+    appId: '1:513581437524:android:2aabed5e83614e063053c1',
+    messagingSenderId: '513581437524',
+    projectId: 'remoteassistant-450a0',
+    storageBucket: 'remoteassistant-450a0.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBFLYrJMlDyk5E0P06hrpkjjZgQHvThois',
-    appId: '1:963567142265:ios:510a5f21aa691a7b071ba8',
-    messagingSenderId: '963567142265',
-    projectId: 'remotea-33fc5',
-    storageBucket: 'remotea-33fc5.appspot.com',
+    apiKey: 'AIzaSyAimfYl02-7mD76-k7GW4ZPjtpYtedfAT4',
+    appId: '1:513581437524:ios:67a44af1ca9437783053c1',
+    messagingSenderId: '513581437524',
+    projectId: 'remoteassistant-450a0',
+    storageBucket: 'remoteassistant-450a0.appspot.com',
     iosBundleId: 'com.example.testflutter',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBFLYrJMlDyk5E0P06hrpkjjZgQHvThois',
-    appId: '1:963567142265:ios:423c4ee29e69b752071ba8',
-    messagingSenderId: '963567142265',
-    projectId: 'remotea-33fc5',
-    storageBucket: 'remotea-33fc5.appspot.com',
+    apiKey: 'AIzaSyAimfYl02-7mD76-k7GW4ZPjtpYtedfAT4',
+    appId: '1:513581437524:ios:42e17344f09a6dca3053c1',
+    messagingSenderId: '513581437524',
+    projectId: 'remoteassistant-450a0',
+    storageBucket: 'remoteassistant-450a0.appspot.com',
     iosBundleId: 'com.example.testflutter.RunnerTests',
   );
 }

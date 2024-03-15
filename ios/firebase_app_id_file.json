@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:963567142265:ios:510a5f21aa691a7b071ba8",
-  "FIREBASE_PROJECT_ID": "remotea-33fc5",
-  "GCM_SENDER_ID": "963567142265"
+  "GOOGLE_APP_ID": "1:513581437524:ios:67a44af1ca9437783053c1",
+  "FIREBASE_PROJECT_ID": "remoteassistant-450a0",
+  "GCM_SENDER_ID": "513581437524"
 }
