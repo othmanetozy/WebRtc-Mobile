@@ -6,7 +6,13 @@ class JoinCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+       body: SafeArea(
+         child: Column(
+           children: [
+             Icon(Icons.arrow_back_ios_new_sharp,size: 35,)
+           ],
+         )
+       ),
     ) ;
   }
 }

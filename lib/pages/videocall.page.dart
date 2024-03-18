@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:testflutter/pages/JoinCode.page.dart';
 
 class VideocallPage extends StatelessWidget {
   const VideocallPage({super.key});
@@ -34,7 +36,9 @@ class VideocallPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
             child: OutlinedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(JoinCode());
+              },
               icon: Icon(Icons.margin),
               label: Text("Join with a code",
               style: TextStyle(fontSize:20),

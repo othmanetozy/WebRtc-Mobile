@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:testflutter/firebase_options.dart';
+import 'package:testflutter/pages/JoinCode.page.dart';
 import 'package:testflutter/pages/consulting.page.dart';
 import 'package:testflutter/pages/home.page.dart';
 import 'package:testflutter/pages/products.page.dart';
@@ -24,13 +26,14 @@ class testApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       routes: {
         "/": (context) => HomePage(),
         "/review": (context) => ReviewPage(),
         "/consulting": (context) => ConsultingPage(),
         "/products": (context) => ProductsPage(),
         "/videocall": (context) => VideocallPage(),
+        "/JoinCode": (context) => JoinCode(),
         "/login": (context) => LoginPage(
           onTap: (){},
         ),
