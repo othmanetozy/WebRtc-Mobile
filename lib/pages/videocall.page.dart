@@ -11,6 +11,7 @@ class VideocallPage extends StatelessWidget {
         title: Text("Video Conference"),
         centerTitle: true,
       ),
+      backgroundColor: Colors.blueGrey[50],
       body: Column(
         children: [
           Padding(
@@ -18,7 +19,9 @@ class VideocallPage extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () {},
               icon: Icon(Icons.add),
-              label: Text("New Meeting"),
+              label: Text("New Meeting",
+                style: TextStyle(fontSize:20),
+              ),
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(350, 30),
                 shape: RoundedRectangleBorder(
@@ -33,7 +36,9 @@ class VideocallPage extends StatelessWidget {
             child: OutlinedButton.icon(
               onPressed: () {},
               icon: Icon(Icons.margin),
-              label: Text("Join with a code"),
+              label: Text("Join with a code",
+              style: TextStyle(fontSize:20),
+              ),
               style: OutlinedButton.styleFrom(
                 fixedSize: Size(350, 30),
                 shape: RoundedRectangleBorder(
@@ -42,9 +47,9 @@ class VideocallPage extends StatelessWidget {
               ),
             ),
           ),
-         SizedBox(height: 20),
+         SizedBox(height: 100),
          Image.asset(
-         "lib/icons/videoCall.jpg",
+         "lib/icons/VC.png",
             ),
         ],
       ),

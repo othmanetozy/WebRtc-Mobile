@@ -39,6 +39,7 @@ flutter:
     - lib/icons/industry.png
     - lib/icons/industrie.png
     - lib/icons/videoCall.jpg
+    - lib/icons/VC.png
 
 
   fonts:
