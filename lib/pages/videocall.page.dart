@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testflutter/pages/JoinCode.page.dart';
+import 'package:testflutter/pages/NewMeeting.page.dart';
 
 class VideocallPage extends StatelessWidget {
   const VideocallPage({super.key});
@@ -19,7 +20,9 @@ class VideocallPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(NewMeeting());
+              },
               icon: Icon(Icons.add),
               label: Text("New Meeting",
                 style: TextStyle(fontSize:20),

@@ -8,6 +8,10 @@ class JoinCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    /*  appBar: AppBar(
+        title: Text("Getting Code"),
+        centerTitle: true,
+      ),*/
       backgroundColor: Colors.blueGrey[50],
       body: SafeArea(
         child: Column(

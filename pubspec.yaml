@@ -22,6 +22,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  uuid: ^3.0.0
+  share: ^2.0.4
 
 
   flutter_lints: ^3.0.0
