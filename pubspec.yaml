@@ -38,6 +38,7 @@ flutter:
     - lib/icons/reglages.png
     - lib/icons/industry.png
     - lib/icons/industrie.png
+    - lib/icons/videoCall.jpg
 
 
   fonts:

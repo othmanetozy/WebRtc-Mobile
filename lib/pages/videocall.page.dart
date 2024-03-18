@@ -7,9 +7,46 @@ class VideocallPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-        child: Text("video"),
+      appBar: AppBar(
+        title: Text("Video Conference"),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.add),
+              label: Text("New Meeting"),
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(350, 30),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+            ),
+          ),
+          Divider(thickness: 1,height: 40, indent: 40,endIndent: 20),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+            child: OutlinedButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.margin),
+              label: Text("Join with a code"),
+              style: OutlinedButton.styleFrom(
+                fixedSize: Size(350, 30),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+            ),
+          ),
+         SizedBox(height: 20),
+         Image.asset(
+         "lib/icons/videoCall.jpg",
+            ),
+        ],
       ),
     );
   }
