@@ -18,6 +18,8 @@ class Signaling {
 
   RTCPeerConnection? peerConnection;
   MediaStream? localStream;
+  MediaStream? remoteStream;
+  String? currentRoomText;
 
   //creating room in database
   Future<String> createRoom(RTCVideoRenderer remoteRenderer) async {
@@ -25,7 +27,7 @@ class Signaling {
     DocumentReference roomRef = db.collection('rooms').doc();
 
     //loading to save
-    print('"Creating Peertopeer connection with a config" : $configurations"');
+    print('"creation de la configuration pour la connexion peer to peer loaaaading" : $configurations"');
     //creating function Peer to peer (P2P)
     peerConnection = await createPeerConnection(configurations);
     registerPeerConnectionListeners();
@@ -36,10 +38,42 @@ class Signaling {
       peerConnection?.addTrack(track, localStream!);
     });
 
+    //adding collection inside of the room
+    var callerCandidatesCollection = roomRef.collection('Condidats');
 
-    var callerCandidatesCollection = roomRef.collection('callerCandidates');
+    //prints each ICE candidate to the console and mapping ICE on the console
+    peerConnection?.onIceCandidate = (RTCIceCandidate user) {
+      print('Got candidate: ${user.toMap()}');
+      callerCandidatesCollection.add(user.toMap());
+
+    }; //finish the code for collecting ICE       ICE : Interactive Connectivity Establishment
 
 
+
+
+
+
+    //creating room
+    RTCSessionDescription offer = await peerConnection!.createOffer();
+    await peerConnection!.setLocalDescription(offer);
+    print('Created offer: $offer');
+
+    Map<String, dynamic> roomWithOffer = {'offer': offer.toMap()};
+
+    await roomRef.set(roomWithOffer);
+    var roomId = roomRef.id;
+    print('New room created. Room ID: $roomId');
+    currentRoomText = 'Current room is $roomId - You are the caller!';
+    // Created a Room
+
+    peerConnection?.onTrack = (RTCTrackEvent event) {
+      print('Got remote track: ${event.streams[0]}');
+
+      event.streams[0].getTracks().forEach((track) {
+        print('Add a track to the remoteStream $track');
+        remoteStream?.addTrack(track);
+      });
+    };
 
 
 
