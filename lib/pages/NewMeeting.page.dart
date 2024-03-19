@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:share/share.dart';
-
-
+import 'package:flutter/cupertino.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:testflutter/firebase_options.dart';
+import 'package:testflutter/signalingServer.dart';
 
 class NewMeeting extends StatefulWidget {
   NewMeeting({Key? key}) : super(key: key);
@@ -14,6 +19,11 @@ class NewMeeting extends StatefulWidget {
 
 class _NewMeetingState extends State<NewMeeting> {
   String _meetingCode = "abcdfgqw";
+  Signaling signaling = Signaling();
+  RTCVideoRenderer _localRenderer = RTCVideoRenderer();
+  RTCVideoRenderer _remoteRenderer = RTCVideoRenderer();
+  String? roomId;
+  TextEditingController textEditingController = TextEditingController(text: '');
 
   @override
   void initState() {
@@ -63,8 +73,6 @@ class _NewMeetingState extends State<NewMeeting> {
                   )),
             ),
             Divider(thickness: 1, height: 40, indent: 20, endIndent: 20),
-
-
             ElevatedButton.icon(
               onPressed: () {
                 Share.share("Meeting Code : $_meetingCode");
@@ -77,12 +85,9 @@ class _NewMeetingState extends State<NewMeeting> {
                     borderRadius: BorderRadius.circular(25)),
               ),
             ),
-
-
             SizedBox(height: 20),
             OutlinedButton.icon(
-              onPressed: () {
-              },
+              onPressed: () {},
               icon: Icon(Icons.video_call),
               label: Text("start call"),
               style: OutlinedButton.styleFrom(

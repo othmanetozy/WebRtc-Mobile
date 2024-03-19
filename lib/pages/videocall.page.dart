@@ -1,65 +1,130 @@
 import 'package:flutter/cupertino.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:testflutter/pages/JoinCode.page.dart';
-import 'package:testflutter/pages/NewMeeting.page.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:testflutter/firebase_options.dart';
+import 'package:testflutter/signalingServer.dart';
 
-class VideocallPage extends StatelessWidget {
-  const VideocallPage({super.key});
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(VideocallPage());
+}
+
+class VideocallPage extends StatefulWidget {
+  VideocallPage({Key? key}) : super(key: key);
+  @override
+  _VideocallPageState createState() => _VideocallPageState();
+}
+
+class _VideocallPageState extends State<VideocallPage> {
+  Signaling signaling = Signaling();
+  RTCVideoRenderer _localRenderer = RTCVideoRenderer();
+  RTCVideoRenderer _remoteRenderer = RTCVideoRenderer();
+  String? roomId;
+  TextEditingController textEditingController = TextEditingController(text: '');
+
+  @override
+  void initState() {
+    _localRenderer.initialize();
+    _remoteRenderer.initialize();
+    signaling.onAddRemoteStream = ((stream) {
+      _remoteRenderer.srcObject = stream;
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _localRenderer.dispose();
+    _remoteRenderer.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Video Conference"),
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.blueGrey[50],
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Get.to(NewMeeting());
-              },
-              icon: Icon(Icons.add),
-              label: Text("New Meeting",
-                style: TextStyle(fontSize:20),
-              ),
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(350, 30),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
+        appBar: AppBar(
+          title: Text("Video Call"),
+        ),
+        body: Column(
+          children: [
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    signaling.opinUserMedia(_localRenderer, _remoteRenderer);
+                  },
+                  child: Text("Open camera & microphone"),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    roomId = await signaling.CreateRoom(_remoteRenderer);
+                    textEditingController.text = roomId!;
+                    setState(() {});
+                  },
+                  child: Text("CreateRoom"),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    signaling.joinRoom(textEditingController.text);
+                  },
+                  child: Text("Join Room"),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    signaling.hangup(_localRenderer);
+                  },
+                  child: Text("Hangup"),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(child: RTCVideoView(_localRenderer, mirror: true)),
+                    Expanded(child: RTCVideoView(_remoteRenderer)),
+                  ],
                 ),
               ),
             ),
-          ),
-          Divider(thickness: 1,height: 40, indent: 40,endIndent: 20),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-            child: OutlinedButton.icon(
-              onPressed: () {
-                Get.to(JoinCode());
-              },
-              icon: Icon(Icons.margin),
-              label: Text("Join with a code",
-              style: TextStyle(fontSize:20),
-              ),
-              style: OutlinedButton.styleFrom(
-                fixedSize: Size(350, 30),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Join the following Room:"),
+                  Flexible(
+                    child: TextFormField(
+                      controller: textEditingController,
+                    ),
+                  )
+                ],
               ),
             ),
-          ),
-         SizedBox(height: 100),
-         Image.asset(
-         "lib/icons/VC.png",
-            ),
-        ],
-      ),
-    );
+            SizedBox(height: 0)
+          ],
+        ));
   }
 }
