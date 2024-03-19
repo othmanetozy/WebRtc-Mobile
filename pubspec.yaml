@@ -18,13 +18,14 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.27.1
   firebase_auth: ^4.17.9
-  flutter_webrtc: ^0.7.0
-
+  flutter_webrtc: ^ 0.9.48
+  cloud_firestore: ^4.6.0
+  cloud_firestore_web: ^3.4.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  uuid: ^3.0.0
+  uuid: ^4.3.3
   share: ^2.0.4
 
 

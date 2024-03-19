@@ -16,8 +16,47 @@ class Signaling {
     ]
   };
 
-Future<String> CreatingRoom(RTCVideoRenderer remoteRendere) async{
+  RTCPeerConnection? peerConnection;
+  MediaStream? localStream;
+
+  //creating room in database
+  Future<String> createRoom(RTCVideoRenderer remoteRenderer) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    DocumentReference roomRef = db.collection('room').doc();
-}
-}
+    DocumentReference roomRef = db.collection('rooms').doc();
+
+    //loading to save
+    print('"Creating Peertopeer connection with a config" : $configurations"');
+    //creating function Peer to peer (P2P)
+    peerConnection = await createPeerConnection(configurations);
+    registerPeerConnectionListeners();
+
+
+    //connecting peer to peer to add track != null
+    localStream?.getTracks().forEach((track) {
+      peerConnection?.addTrack(track, localStream!);
+    });
+
+
+    var callerCandidatesCollection = roomRef.collection('callerCandidates');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
