@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "513581437524",
+    "project_number": "798793215266",
     "project_id": "remoteassistant-450a0",
     "storage_bucket": "remoteassistant-450a0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:513581437524:android:2aabed5e83614e063053c1",
+        "mobilesdk_app_id": "1:798793215266:android:d9faf1eeaf4a785904497b",
         "android_client_info": {
           "package_name": "com.example.testflutter"
         }

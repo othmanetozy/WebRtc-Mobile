@@ -59,7 +59,7 @@ class _VideocallPageState extends State<VideocallPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    signaling.opinUserMedia(_localRenderer, _remoteRenderer);
+                    signaling.openUserMedia(_localRenderer, _remoteRenderer);
                   },
                   child: Text("Open camera & microphone"),
                 ),
@@ -68,7 +68,7 @@ class _VideocallPageState extends State<VideocallPage> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    roomId = await signaling.CreateRoom(_remoteRenderer);
+                    roomId = await signaling.createRoom(_remoteRenderer);
                     textEditingController.text = roomId!;
                     setState(() {});
                   },
@@ -79,7 +79,10 @@ class _VideocallPageState extends State<VideocallPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    signaling.joinRoom(textEditingController.text);
+                    signaling.joinRoom(
+                      textEditingController.text,
+                      _remoteRenderer,
+                    );
                   },
                   child: Text("Join Room"),
                 ),
@@ -88,7 +91,7 @@ class _VideocallPageState extends State<VideocallPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    signaling.hangup(_localRenderer);
+                    signaling.hangUp(_localRenderer);
                   },
                   child: Text("Hangup"),
                 ),
