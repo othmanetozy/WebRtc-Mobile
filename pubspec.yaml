@@ -9,6 +9,8 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  flutter_webrtc: ^0.9.48+hotfix.1
+  socket_io_client: ^2.0.0
   get:
   flutter:
     sdk: flutter
@@ -18,9 +20,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^2.27.1
   firebase_auth: ^4.17.9
-  flutter_webrtc: ^ 0.9.48
   cloud_firestore: ^4.6.0
   cloud_firestore_web: ^3.4.3
+
 
 dev_dependencies:
   flutter_test:

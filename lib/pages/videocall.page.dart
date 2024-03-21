@@ -1,65 +1,45 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:testflutter/pages/JoinCode.page.dart';
-import 'package:testflutter/pages/NewMeeting.page.dart';
+import 'dart:io';
 
-class VideocallPage extends StatelessWidget {
-  const VideocallPage({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+
+class Test extends StatefulWidget {
+  const Test({super.key});
+
+  @override
+  State<Test> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<Test> {
+  late final IO.Socket socket;
+  final _Localement = RTCVideoRenderer();
+  final _Remote = RTCVideoRenderer();
+  MediaStream? LocalStream;
+  RTCPeerConnection? pc;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Future init() async {}
+
+  Future connectSocket() async {
+    socket = IO.io("http://localhost:3000",
+        IO.OptionBuilder().setTransports(['websocket']).build());
+    socket.onConnect((data) => print("data connected"));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Video Conference"),
-        centerTitle: true,
-      ),
-      backgroundColor: Colors.blueGrey[50],
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 0, 0),
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Get.to(NewMeeting());
-              },
-              icon: Icon(Icons.add),
-              label: Text("New Meeting",
-                style: TextStyle(fontSize:20),
-              ),
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(350, 30),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-            ),
-          ),
-          Divider(thickness: 1,height: 40, indent: 40,endIndent: 20),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-            child: OutlinedButton.icon(
-              onPressed: () {
-                Get.to(JoinCode());
-              },
-              icon: Icon(Icons.margin),
-              label: Text("Join with a code",
-              style: TextStyle(fontSize:20),
-              ),
-              style: OutlinedButton.styleFrom(
-                fixedSize: Size(350, 30),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-            ),
-          ),
-         SizedBox(height: 100),
-         Image.asset(
-         "lib/icons/VC.png",
-            ),
-        ],
-      ),
-    );
+    return MaterialApp(
+        home: Row(
+      children: [
+        Expanded(child: RTCVideoView(_Localement)),
+        Expanded(child: RTCVideoView(_Remote)),
+      ],
+    ));
   }
 }

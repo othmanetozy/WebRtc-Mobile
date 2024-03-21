@@ -7,18 +7,18 @@ async function server() {
     const io = new Server(http,{transports: ['websocket.io']});
     const roomName = "test";
 
-
+        //connection client to server 
     io.on("connection",(socket)=>{
         socket.on("join",() =>{
             socket.join(roomName);
             socket.to(roomName).emit("joindre la reunion")
         });
 
-
+            //post request to client in room 
         socket.on("offer",(offer) =>{
             socket.to(roomName).emit("offer",offer);
-        });
-        
+        });     
+                //post response to client in room
         socket.on("answer",(answer)=>{
             socket.to(roomName).emit("answer",answer);
         });
