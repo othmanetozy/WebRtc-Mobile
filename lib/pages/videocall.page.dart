@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -21,13 +19,16 @@ class _MyWidgetState extends State<Test> {
   @override
   void initState() {
     // TODO: implement initState
+    init();
     super.initState();
   }
 
-  Future init() async {}
+  Future init() async {
+    await connectSocket();
+  }
 
   Future connectSocket() async {
-    socket = IO.io("http://localhost:3000",
+    socket = IO.io("http://localhost:3001",
         IO.OptionBuilder().setTransports(['websocket']).build());
     socket.onConnect((data) => print("data connected"));
   }

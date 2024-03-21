@@ -12,8 +12,7 @@ import 'package:testflutter/pages/review.page.dart';
 import 'package:testflutter/pages/videocall.page.dart';
 import 'package:testflutter/pages/Login.page.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -32,27 +31,25 @@ class testApp extends StatelessWidget {
         "/review": (context) => ReviewPage(),
         "/consulting": (context) => ConsultingPage(),
         "/products": (context) => ProductsPage(),
-        "/videocall": (context) => VideocallPage(),
         "/JoinCode": (context) => JoinCode(),
+        "/videocall": (context) => Test(),
         "/login": (context) => LoginPage(
-          onTap: (){},
-        ),
+              onTap: () {},
+            ),
         "/register": (context) => register(
-          onTap: () {
-            Navigator.pushNamed(context, '/login');
-          },
-        ),
-
-
+              onTap: () {
+                Navigator.pushNamed(context, '/login');
+              },
+            ),
       },
       //home: register(),
       theme: ThemeData(
           primarySwatch: Colors.deepPurple,
           textTheme: const TextTheme(
-            //bodyMedium: TextStyle(fontSize: 30, color: Colors.deepPurple),
-            //bodyLarge: TextStyle(fontSize: 50, color: Colors.black),
-            //bodySmall: TextStyle(fontSize: 25, color: Colors.blue),
-          ),
+              //bodyMedium: TextStyle(fontSize: 30, color: Colors.deepPurple),
+              //bodyLarge: TextStyle(fontSize: 50, color: Colors.black),
+              //bodySmall: TextStyle(fontSize: 25, color: Colors.blue),
+              ),
           iconTheme: IconThemeData(color: Colors.blueAccent, size: 30)),
     );
   }
