@@ -22,8 +22,8 @@ async function server(){
             socket.to(roomName).emit('answer', answer);
         });
       
-        socket.on('ice', (ice) => {
-            socket.to(roomName).emit('ice', ice);
+        socket.on('ICE', (ice) => {
+            socket.to(roomName).emit('ICE', ice);
         });
 
     });
