@@ -14,8 +14,8 @@ class Test extends StatefulWidget {
 
 class _MyWidgetState extends State<Test> {
   late final IO.Socket socket;
-  final _locally = RTCVideoRenderer();
-  final _remote = RTCVideoRenderer();
+  final _localRenderer = RTCVideoRenderer();
+  final _remoteRenderer = RTCVideoRenderer();
   MediaStream? localStream;
   RTCPeerConnection? pc;
 
@@ -26,115 +26,104 @@ class _MyWidgetState extends State<Test> {
   }
 
   Future<void> init() async {
-    await _locally.initialize();
-    await _remote.initialize();
-
-    await connectSocket();
+    await _localRenderer.initialize();
+    await _remoteRenderer.initialize();
+    await connectSockets();
     await joinRoom();
   }
 
-  Future<void> connectSocket() async {
-    socket = IO.io("http://localhost:3001",
+  Future<void> connectSockets() async {
+    socket = IO.io("http://localhost:3000",
         IO.OptionBuilder().setTransports(['websocket']).build());
-    socket.onConnect((data) => print("data connected"));
 
-    socket.on("joined", (data) {
+    socket.onConnect((data) => print("Data connected"));
+
+    socket.on('join', (data) {
       _sendOffer();
     });
 
-    socket.on("offer", (data) async {
+    socket.on('offer', (data) async {
       data = jsonDecode(data);
       await _gotOffer(RTCSessionDescription(data['sdp'], data['type']));
       await _sendAnswer();
     });
 
-    socket.on("answer", (data) {
+    socket.on('answer', (data) {
       data = jsonDecode(data);
       _gotAnswer(RTCSessionDescription(data['sdp'], data['type']));
     });
 
     socket.on("ICE", (data) {
       data = jsonDecode(data);
-      _gotICE(RTCIceCandidate(
+      _gotIce(RTCIceCandidate(
           data['condidat'], data['sdpMip'], data['sdpMlineIndex']));
     });
   }
 
   Future<void> joinRoom() async {
     final config = {
-      "IceServer": [
-        {"url": "stun:stun1.l.google.com:19302"},
-        {"url": "stun:stun4.l.google.com:19302"},
+      'iceServers': [
+        {"url": "stun:stun.l.google.com:19302"},
       ]
     };
 
-    final sdpConstraint = {
-      "mandatory": {
-        'offreToReciveAudio': true,
-        'offreToReciveVideo': true,
+    final sdpConstraints = {
+      'mandatory': {
+        'OfferToReceiveAudio': true,
+        'OfferToReceiveVideo': true,
       },
       'optional': []
     };
 
-    pc = await createPeerConnection(config, sdpConstraint);
+    pc = await createPeerConnection(config, sdpConstraints);
 
-    final mediaConstraints = {
-      'audio': true,
-      'video': {'facingMode': 'user'}
-    };
-
-    try {
-      localStream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
-      _locally.srcObject = localStream;
-    } catch (e) {
-      print('Error accessing camera: $e');
-      return;
-    }
+    localStream = await CameraHelper.openCamera();
 
     localStream!.getTracks().forEach((track) {
       pc!.addTrack(track, localStream!);
     });
 
-    pc!.onIceCandidate = (ice) {
-      // ICE
-      _sendICE(ice);
+    _localRenderer.srcObject = localStream;
+
+    pc!.onIceCandidate = (candidate) {
+      _sendIce(candidate);
     };
 
     pc!.onAddStream = (stream) {
-      _remote.srcObject = stream;
+      _remoteRenderer.srcObject = stream;
     };
 
     socket.emit('join');
   }
 
   Future<void> _sendOffer() async {
-    print("Send me offer");
-    //RTCSessionDescription
+    print("Sending offer");
     var offer = await pc!.createOffer();
-    pc!.setLocalDescription(offer);
+    await pc!.setLocalDescription(offer);
     socket.emit('offer', jsonEncode(offer.toMap()));
   }
 
   Future<void> _gotOffer(RTCSessionDescription offer) async {
-    pc!.setRemoteDescription(offer);
+    await pc!.setRemoteDescription(offer);
   }
 
   Future<void> _sendAnswer() async {
     var answer = await pc!.createAnswer();
-    pc!.setLocalDescription(answer);
+    await pc!.setLocalDescription(answer);
     socket.emit('answer', jsonEncode(answer.toMap()));
   }
 
   Future<void> _gotAnswer(RTCSessionDescription answer) async {
-    pc!.setRemoteDescription(answer);
+    await pc!.setRemoteDescription(answer);
   }
 
-  Future<void> _gotICE(RTCIceCandidate ice) async {
-    pc!.addCandidate(ice);
+  Future<void> _sendIce(RTCIceCandidate ice) {
+    socket.emit("ICE", jsonEncode(ice.toMap()));
+    return Future.value();
   }
 
-  Future<void> _sendICE(RTCIceCandidate ice) async {
-    socket.emit('ice', jsonEncode(ice.toMap()));
+  Future<void> _gotIce(RTCIceCandidate ice) async {
+    await pc!.addCandidate(ice);
   }
 
   @override
@@ -142,10 +131,33 @@ class _MyWidgetState extends State<Test> {
     return MaterialApp(
       home: Row(
         children: [
-          Expanded(child: RTCVideoView(_locally)),
-          Expanded(child: RTCVideoView(_remote)),
+          Expanded(child: RTCVideoView(_localRenderer)),
+          Expanded(child: RTCVideoView(_remoteRenderer)),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _localRenderer.dispose();
+    _remoteRenderer.dispose();
+    pc?.dispose();
+    super.dispose();
+  }
+}
+
+class CameraHelper {
+  static Future<MediaStream?> openCamera() async {
+    final mediaConstraints = {
+      'audio': true,
+      'video': {'facingMode': 'user'}
+    };
+    try {
+      return await navigator.mediaDevices.getUserMedia(mediaConstraints);
+    } catch (e) {
+      print('Error opening camera: $e');
+      return null;
+    }
   }
 }
